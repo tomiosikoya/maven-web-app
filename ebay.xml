@@ -22,7 +22,7 @@
 		<log4j.version>1.2.17</log4j.version>
 		<sonar.host.url>http://18.223.20.147:9000/</sonar.host.url>
 		<sonar.login>admin</sonar.login>
-		<!-- <sonar.password>admin</sonar.password>  -->
+		<sonar.password>admin</sonar.password>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -97,7 +97,7 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Releases Nexus Repository</name>  
-	      <url>http://54.87.250.193:8088/mylandmarktech/repository/boa-releases/</url>
+	      <url>http://3.135.17.182:8088/mylandmarktech/repository/ebay-releases/</url>
 		    
 		          
 	    </repository>
@@ -105,7 +105,7 @@
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Snapshot Nexus Repository </name>
-	      <url>http://54.87.250.193:8088/mylandmarktech/repository/boa-snapshot/</url>
+	      <url>http://3.135.17.182:8088/mylandmarktech/repository/ebay-snapshot/</url>
 	    </snapshotRepository>
 	</distributionManagement>
 	
