@@ -1,40 +1,37 @@
 node
 {
-def mavenHome = tool name: "maven3.6.3"
-    
-    stage("1. git clone")
-    {
-       git credentialsId: 'GitCredentials', url: 'https://github.com/myLandmakTechnology/maven-web-app'
-    }
-    
-    stage("2. Build")
-    {
-        sh "${mavenHome}/bin/mvn clean package"
+def mavenHome = tool name: 'maven3.6.3'
+stage('1.Codeclone')
+git credentialsId: 'github_credentials', url: 'https://github.com/tomiosikoya/maven-web-app.git'
+stage('2.maven-Build')
+{ 
+sh "${mavenHome}/bin/mvn package"
+}
+stage('3.CodeQualityReport')
+{
+sh "${mavenHome}/bin/mvn sonar:sonar"
+}
+stage('4.UploadNexus')
+{
+//sh "${mavenHome}/bin/mvn deploy"
+}
+stage('5.Approval')
+{
+echo "Approved. Ready for deployment"
+}
+stage('6.DeployTomcat')
+{
+deploy adapters: [tomcat9(credentialsId: 'Tomcat_creds', path: '', url: 'http://3.15.196.8:8888/')], contextPath: null, war: 'target/*war'
+}   
+stage('7.Notification')
+{
+emailextrecipients([developers()])
+} 
+} 
 
-        // bat mvn clean package  - for winows OS
-    }
-    /*
-    stage('3. SonarQubeReport')
-    {
-         sh "${mavenHome}/bin/mvn sonar:sonar"
-    }
-    stage('4. Nexus')
-     {
-         sh "${mavenHome}/bin/mvn deploy"
-    }
-    stage('5. Deploy')
-    {
-        deploy adapters: [tomcat9(credentialsId: 'Tomcat-Credentials', path: '', url: 'http://54.163.156.108:8888/')], contextPath: null, war: 'target/*war'
-    }
-
-    stage('6. Email Notification')
-    {
-
-emailext body: '''Hi
-
-Build Status
-Landmark Technology
-+ 1 437 215 2483''', recipientProviders: [developers()], subject: 'Build status', to: 'legah2000@gmail.com'    
-    }
-   }
+//
+/*
+the
+this
+they
 */
